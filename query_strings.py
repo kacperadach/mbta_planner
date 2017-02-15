@@ -1,0 +1,3 @@
+QUERY_STRINGS = (
+	'WORCSTER'
+)
