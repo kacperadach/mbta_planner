@@ -4,7 +4,7 @@ from datetime import date
 import flask
 from flask import request, abort, jsonify
 
-from mbta_planner.models.db_models import User
+from mbta_planner.models import User
 from mbta_planner import constants as const
 from mbta_planner.db import session
 
