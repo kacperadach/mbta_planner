@@ -18,11 +18,16 @@ def get_train_schedules():
 		driver = get_page_driver(url)
 		for direction in ('inbound', 'outbound'):
 			for timing in ('weekday', 'saturday', 'sunday'):
-				choose_direction(driver, direction)
-				choose_timing(driver, timing)
-				click_redisplay_time(driver)
-				table_data = get_table_data(driver)
-				save_table_data_as_pickle('{}-{}-{}.p'.format(TRAIN_ABBRS[qs], direction, timing), table_data)
+				try:
+					choose_direction(driver, direction)
+					choose_timing(driver, timing)
+					click_redisplay_time(driver)
+					table_data = get_table_data(driver)
+					save_table_data_as_pickle('{}-{}-{}.p'.format(qs, direction, timing), table_data)
+				except:
+					print 'No schedule found: {} {} {}'.format(TRAIN_ABBRS[qs], direction, timing)
+					pass
+		driver.close()
 	print 'Finished Scraping Train Schedules'
 
 
