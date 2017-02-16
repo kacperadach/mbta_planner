@@ -6,6 +6,8 @@ from mbta_planner.constants import *
 
 SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}/{}'.format(MYSQL_USER, MYSQL_PASSWD, MYSQL_HOST, MYSQL_DB)
 
+from mbta_planner.models import *
+
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 Base.metadata.create_all(engine, checkfirst=True)
 Session = sessionmaker(bind=engine)
