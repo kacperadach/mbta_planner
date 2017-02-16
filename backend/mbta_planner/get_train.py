@@ -5,7 +5,7 @@ from os import path
 from IPython.core.debugger import Tracer
 sys.path.append(path.dirname(path.abspath(__file__).rsplit('/', 1)[0]))
 
-from sqlalchemy import and_
+from sqlalchemy import or_
 
 from mbta_planner.models import Train, TrainStop, TrainRide, TrainResponse
 from mbta_planner.db import session
@@ -40,9 +40,10 @@ def get_trains(start, dest, input_time, day):
 	name = start.replace(' ', '') + ':' + dest.replace(' ', '')
 	day = get_day_str(day)
 	input_time = get_time(input_time)
-	TrainRides = session.query(TrainRide).filter_by(name=name).outerjoin(TrainStop, TrainRide.start_id==TrainStop.id).outerjoin(Train).filter(Train.timing==day)
+	TrainRides = session.query(TrainRide).filter_by(name=name).outerjoin(TrainStop, TrainRide.start_id==TrainStop.id).filter(or_(TrainStop.time > input_time, TrainStop.time < time(hour=4))).outerjoin(Train).filter(Train.timing==day)
 	TrainRides = TrainRides.all()
-	Tracer()()
+
+
 
 	if len(TrainRides) >= 3:
 		TrainRides = TrainRides[0:3]
