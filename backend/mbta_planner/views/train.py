@@ -36,3 +36,7 @@ def login():
     
     return jsonify(train_responses)
 
+
+@train_view.route('/test', methods=['GET'])
+def test():
+    return jsonify('test')
