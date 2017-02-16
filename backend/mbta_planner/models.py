@@ -1,15 +1,36 @@
 import enum
 
+from flask.json import jsonify
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, relation
 
 from mbta_planner.base import Base
+from mbta_planner.constants import TRAIN_ABBRS
 
 
 class Timing(enum.Enum):
 	weekday = 'Weekday'
 	saturday = 'Saturday'
 	sunday = 'Sunday'
+
+
+class TrainResponse():
+
+	def __init__(self, train, start, dest):
+		self.train = train
+		self.start = start
+		self.dest = dest
+
+	def get_dict(self):
+
+		def get_serializable_time(t):
+			return t.strftime('%I:%M %p')
+
+		return {
+			'train': {'train_number': self.train.train_number, 'train_line': TRAIN_ABBRS[self.train.line], 'timing': self.train.timing.name},
+			'start': {'station': self.start.station, 'time': get_serializable_time(self.start.time)},
+			'dest': {'station': self.dest.station, 'time': get_serializable_time(self.dest.time)}
+		}
 
 
 class Train(Base):
@@ -19,7 +40,6 @@ class Train(Base):
 	train_number = Column(Integer)
 	line = Column(String(50))
 	timing = Column(Enum(Timing))
-	train_stops = relationship('TrainStop')
 
 
 class TrainStop(Base):
@@ -29,6 +49,7 @@ class TrainStop(Base):
 	train_id = Column(Integer, ForeignKey('Train.id'))
 	station = Column(String(50))
 	time = Column(Time)
+	train = relationship('Train')
 
 
 class TrainRide(Base):
@@ -38,6 +59,6 @@ class TrainRide(Base):
 	name = Column(String(100))
 	start_id = Column(Integer, ForeignKey('TrainStop.id'), nullable=False)
 	dest_id = Column(Integer, ForeignKey('TrainStop.id'), nullable=False)
-	start_train = relationship('TrainStop', foreign_keys=[start_id])
-	dest_train = relationship('TrainStop', foreign_keys=[dest_id])
+	start = relationship('TrainStop', foreign_keys=[start_id])
+	dest = relationship('TrainStop', foreign_keys=[dest_id])
 

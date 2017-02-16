@@ -33,6 +33,36 @@ def get_line_and_timing_from_file(file_name):
 	return split[0], split[2]
 
 
+def get_24hour_time(am_or_pm, first_time, hour, minute):
+	hour = int(hour)
+	minute = int(minute)
+	if hour >= first_time.hour and hour != 12:
+		if am_or_pm == 'AM':
+			return time(hour=hour, minute=minute)
+		else:
+			return time(hour=hour+12, minute=minute)
+	elif hour < first_time.hour and first_time.hour !=12:
+		if am_or_pm == 'AM':
+			return time(hour=hour+12, minute=minute)
+		else:
+			return time(hour=hour, minute=minute)
+	elif hour > first_time.hour and hour == 12:
+		if am_or_pm == 'AM':
+			return time(hour=12, minute=minute)
+		else:
+			return time(hour=0, minute=minute)
+	elif hour == first_time.hour and hour == 12:
+		if am_or_pm == 'AM':
+			return time(hour=0, minute=minute)
+		else:
+			return time(hour=12, minute=minute)
+	elif hour < first_time.hour and first_time.hour == 12:
+		if am_or_pm == 'AM':
+			return time(hour=hour, minute=minute)
+		else:
+			return time(hour=hour+12, minute=minute)
+	raise AssertionError
+
 def map_train_table(train_table, line, timing):
 	all_objects = []
 	stations = train_table[:,0]
@@ -47,24 +77,25 @@ def map_train_table(train_table, line, timing):
 		am_or_pm = col[0].split('\n')[1]
 
 		all_stops = []
+		first_time = None
 		for ts in col[1:]:
 			if ts.strip() != '' and ts not in INVALID_TABLE_STRS:
 				try:
 					hour, minute = ts.strip('F').split(':')
+					if not first_time:
+						first_time = time(int(hour), int(minute))
 				except:
 					Tracer()()
 			else:
 				continue
-			if am_or_pm.upper() == 'PM' and int(hour) != 12:
-				t = time(hour=int(hour) + 12, minute=int(minute))
-			else:
-				t = time(hour=int(hour), minute=int(minute))
+			t = get_24hour_time(am_or_pm, first_time, hour, minute)
+
 			train_stop = TrainStop(
 				id=TSIG.next(),
 				station=stations[np.where(col == ts)[0][0]],
-				time=t
+				time=t,
+				train=train
 			)
-			train.train_stops.append(train_stop)
 			all_stops.append(train_stop)
 			all_objects.append(train_stop)
 
