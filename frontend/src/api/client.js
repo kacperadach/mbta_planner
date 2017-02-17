@@ -1,10 +1,3 @@
-const search = () => {
-	return fetch(`train/test`, {
-		accept: 'application/json',
-	}).then(checkStatus)
-	  .then(parseJSON);
-}
-
 const checkStatus = (response) => {
 	if (response.status >= 200 && response.status < 300) {
 		return response;
@@ -20,6 +13,15 @@ const parseJSON = (response) => {
 	return response.json();
 }
 
-const Client = { search };
+const makeRequest = (endpoint, method, body) => {
+	return fetch(endpoint, {
+		accept: 'application/json',
+		method: method,
+		body: body
+	}).then(checkStatus)
+	  .then(parseJSON);
+}
+
+const Client = { makeRequest };
 
 export default Client;

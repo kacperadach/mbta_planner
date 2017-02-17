@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { sampleAction } from '../actions/sampleAction';
+import { sampleApiCall } from '../actions/sampleAction';
+
 
 const mapStateToProps = (state, props) => {
   return {
@@ -10,7 +11,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    increment: () => dispatch(sampleAction())
+    increment: () => dispatch(sampleApiCall())
   }
 };
 

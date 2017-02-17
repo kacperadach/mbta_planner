@@ -2,4 +2,4 @@
 
 if __name__ == '__main__':
     from mbta_planner import app
-    app.run()
+    app.run(port=3001)

@@ -4,12 +4,29 @@ import App from './App';
 import './index.css';
 import { Provider } from 'react-redux';
 import Store from './store';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 const StoreInstance = Store();
 
 ReactDOM.render(
   <Provider store={StoreInstance}>
-    <App/>
+  	<App />
   </Provider>,
   document.getElementById('root')
 );
+
+
+
+// ReactDOM.render(
+//   <Provider store={StoreInstance}>
+//     <Router history={browserHistory}>
+//     	<Route path="/" component={App} />
+//     </Router>
+//   </Provider>,
+//   document.getElementById('root')
+// );
+
+
+// <Router>
+//     	<Route path='/' component={App} />
+//     </Router>
