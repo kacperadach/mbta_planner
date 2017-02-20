@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import sampleReducer from './sampleReducer';
+import MainFormReducer from './MainFormReducer';
 
 const rootReducer = combineReducers({
-    sampleReducer
+    MainFormReducer
 });
 
 export default rootReducer;
