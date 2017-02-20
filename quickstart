@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 gnome-terminal --tab -e "bash --rcfile .flaskrc" --tab -e "bash --rcfile .reactrc"
 
