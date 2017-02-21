@@ -12,8 +12,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-  };
+  return {};
 };
 
 const TrainResults = React.createClass({
@@ -22,6 +21,14 @@ const TrainResults = React.createClass({
 		const {
 			Trains
 		} = this.props;
+
+		if (Trains.size == 0) {
+			return (
+				<div>
+					<p>No Trains Found</p>
+				</div>
+			);
+		}
 
 		return (
 			<div>

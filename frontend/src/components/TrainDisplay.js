@@ -24,8 +24,6 @@ const TrainResults = React.createClass({
 			train
 		} = this.props;
 
-		console.log(train);
-
 		return (
 			<div>
 				<p>{train.get('train').get('train_number')} - {train.get('train').get('train_line')} - {capitalizeFirstLetter(train.get('train').get('timing'))}</p>

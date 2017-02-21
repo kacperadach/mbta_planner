@@ -6,7 +6,6 @@ import Select from 'react-select';
 import { getTimeOptions } from '../utils/time';
 
 const mapStateToProps = (state, props) => {
-	console.log(state);
 	return {
 		timeOptions: state.MainContainerReducer.get('times')
 	};

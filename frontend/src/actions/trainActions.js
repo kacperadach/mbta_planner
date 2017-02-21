@@ -18,6 +18,11 @@ export const getTrains = (body) => {
 				type: 'trains_found',
 				payload: payload
 			});
+		}, () => {
+			dispatch({
+				type: 'trains_found',
+				payload: []
+			});
 		});
 	}
 }
