@@ -4,20 +4,6 @@ import { setFormValue } from '../actions/formActions';
 import Select from 'react-select';
 import { getTimeOptions } from '../utils/time';
 
-
-// const getHour = (time) => {
-
-// };
-
-// const getMinute = (time) => {
-
-// };
-
-// const getAmPm = (time) => {
-
-// };
-
-
 const mapStateToProps = (state, props) => {
 	return {
 	};
@@ -56,19 +42,28 @@ const TimeSelect = React.createClass({
 
 	componentWillMount() {
 		const {
-			initial
+			initial,
+			label,
+			setFormVal
 		} = this.props;
 
 		this.setState({'value': initial});
+		setFormVal(label, initial);
 	},
 
 	handleChange(option) {
+		const {
+			setFormVal,
+			label
+		} = this.props;
+
 		this.setState({'changed': true});
 		if (option === null) {
 			this.setState({'value': null});
 		}
 		else {
 			this.setState({'value': option['value']});
+			setFormVal(label, option['value']);
 		}
 	},
 

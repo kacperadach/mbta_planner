@@ -5,11 +5,5 @@ export const getCurrentTime = () => {
 };
 
 export const getTimeOptions = (currentTime) => {
-	//if currentTime 
-	console.log([{value: currentTime, label:currentTime}]);
 	return [{value: currentTime, label:currentTime}];
-	// split = currentTime.split(' ')[0]
-	// hour = split.split(':')[0]
-	// minute = split.split(':')[1]
-
 };

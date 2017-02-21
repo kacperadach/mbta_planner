@@ -15,6 +15,7 @@ export const getTrains = (body) => {
 	console.log(body);
 	return dispatch => {
 		Client.makeRequest('train/find', 'POST', JSON.stringify(body)).then((payload) => {
+			console.log(payload);
 			dispatch({
 				type: 'trains_found',
 				payload: payload

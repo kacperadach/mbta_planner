@@ -6,7 +6,8 @@ const mapStateToProps = (state, props) => {
   return {
   	start: state.MainFormReducer.get('Start'),
   	destination: state.MainFormReducer.get('Destination'),
-  	day: state.MainFormReducer.get('Day')
+  	day: state.MainFormReducer.get('Day'),
+  	time: state.MainFormReducer.get('Time')
   };
 };
 
@@ -23,11 +24,12 @@ const SubmitButton = React.createClass({
 			submit,
 			start,
 			destination,
-			day
+			day, 
+			time
 		} = this.props;
 
 		return (
-			<button onClick={() => submit({start, destination, day, hour: 1, minute: 2})} />
+			<button onClick={() => submit({start, destination, day, time})}>Find Trains</button>
 		);
 	}
 

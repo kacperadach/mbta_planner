@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { getStationOptions } from '../actions/trainActions';
 import { connect } from 'react-redux';
 import MainForm from '../components/MainForm';
+import TrainResults from '../components/TrainResults';
 import { getNextTime } from '../actions/formActions';
 
 const mapStateToProps = (state, props) => {
@@ -31,7 +32,10 @@ const MainComponent = React.createClass({
 
 		render() {
 				return (
+					<div>
 						<MainForm />
+						<TrainResults />
+					</div>
 				);
 		}
 });
