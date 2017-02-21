@@ -1,30 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import SubForm from '../components/SubForm';
+import SubSelect from '../components/SubSelect';
+import TimeSelect from '../components/TimeSelect';
+import { Days } from '../constants/days';
+import SubmitButton from '../components/SubmitButton';
 
 
 const mapStateToProps = (state, props) => {
   return {
-  }
+    'stations': state.MainContainerReducer.get('stations'),
+    'currentTime': state.MainContainerReducer.get('currentTime')
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  }
+  };
 };
 
-class MainForm extends Component {
+const MainForm = React.createClass({
+
   render() {
+
+    const {
+      stations,
+      currentTime
+    } = this.props;
+
+    console.log(currentTime);
 
     return (
       <div>
-        <SubForm label="Start" />
-        <SubForm label="Destination" />
-        <SubForm label="Day" initial="Today" />
+        <SubSelect label="Start" options={stations} />
+        <SubSelect label="Destination" options={stations} />
+        <TimeSelect label="Time" initial={currentTime} />
+        <SubSelect label="Day" initial="Today" options={Days} />
+        <SubmitButton />
       </div>
     );
   }
-};
+});
 
 MainForm.propTypes = {
   value: PropTypes.number,

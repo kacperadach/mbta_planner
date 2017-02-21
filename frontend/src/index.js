@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import 'react-select/dist/react-select.css';
 import { Provider } from 'react-redux';
 import Store from './store';
-import { Router, Route, Link, browserHistory } from 'react-router';
+//import { Router, Route, Link, browserHistory } from 'react-router';
 
 const StoreInstance = Store();
 

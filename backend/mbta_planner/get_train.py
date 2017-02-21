@@ -43,8 +43,6 @@ def get_trains(start, dest, input_time, day):
 	TrainRides = session.query(TrainRide).filter_by(name=name).outerjoin(TrainStop, TrainRide.start_id==TrainStop.id).filter(or_(TrainStop.time > input_time, TrainStop.time < time(hour=4))).outerjoin(Train).filter(Train.timing==day)
 	TrainRides = TrainRides.all()
 
-
-
 	if len(TrainRides) >= 3:
 		TrainRides = TrainRides[0:3]
 	elif len(TrainRides) > 0:
@@ -58,3 +56,10 @@ def get_trains(start, dest, input_time, day):
 		train_responses.append(train_response)
 
 	return train_responses
+
+
+def get_train_stations():
+	TrainStops = map(lambda x: x[0], session.query(TrainStop.station).all());
+	seen = set()
+	seen_add = seen.add
+	return sorted([x for x in TrainStops if not (x in seen or seen_add(x))])

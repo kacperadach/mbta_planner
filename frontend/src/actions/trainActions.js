@@ -1,11 +1,24 @@
-export const sampleApiCall = () => {
+import Client from '../api/client';
+
+export const getStationOptions = () => {
 	return dispatch => {
-		Client.makeRequest('train/find', 'POST', JSON.stringify({'start': 'Natick'})).then((payload) => {
-			console.log(payload);
+		Client.makeRequest('train/stations', 'GET').then((payload) => {
 			dispatch({
-				type: 'api',
+				type: 'station_options',
 				payload: payload
 			});
-		})
+		});
+	}
+}
+
+export const getTrains = (body) => {
+	console.log(body);
+	return dispatch => {
+		Client.makeRequest('train/find', 'POST', JSON.stringify(body)).then((payload) => {
+			dispatch({
+				type: 'trains_found',
+				payload: payload
+			});
+		});
 	}
 }

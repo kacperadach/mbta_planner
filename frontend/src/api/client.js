@@ -14,6 +14,7 @@ const parseJSON = (response) => {
 }
 
 const makeRequest = (endpoint, method, body) => {
+	console.log(body);
 	return fetch(endpoint, {
 		accept: 'application/json',
 		method: method,
