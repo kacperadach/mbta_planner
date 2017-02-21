@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { getStationOptions } from '../actions/trainActions';
+import { getStationOptions, getAllTimes } from '../actions/trainActions';
 import { connect } from 'react-redux';
 import MainForm from '../components/MainForm';
 import TrainResults from '../components/TrainResults';
@@ -13,7 +13,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
 		return {
 				getStations: () => dispatch(getStationOptions()),
-				currentTimeTimeout: () => dispatch(getNextTime())
+				currentTimeTimeout: () => dispatch(getNextTime()),
+				getTimes: () => dispatch(getAllTimes())
 		};
 };
 
@@ -22,12 +23,14 @@ const MainComponent = React.createClass({
 		componentWillMount() {
 				const {
 						getStations,
-						currentTimeTimeout
+						currentTimeTimeout,
+						getTimes
 				} = this.props;
 
 				//init app calls
 				getStations();
 				currentTimeTimeout();
+				getTimes();
 		},
 
 		render() {

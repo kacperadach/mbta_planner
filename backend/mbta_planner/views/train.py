@@ -15,6 +15,7 @@ train_view = flask.Blueprint('train', __name__)
 
 @train_view.route('/find', methods=['POST'])
 def login():
+
     body = json.loads(request.data)
     for key in ('start', 'destination', 'time', 'day'):
         if key not in body.keys():
@@ -46,3 +47,14 @@ def stations():
     for t in get_train_stations():
         stations.append({'value': t, 'label': t})
     return jsonify(stations)
+
+
+@train_view.route('/time', methods=['GET'])
+def get_times():
+
+    all_times = []
+    for i in range(0, 24):
+        for j in range(0, 60):
+            all_times.append(time(hour=i, minute=j).strftime('%I:%M %p'))
+    all_times = [{'value': x, 'label': x} for x in all_times]
+    return jsonify(all_times)

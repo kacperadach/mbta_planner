@@ -12,12 +12,21 @@ export const getStationOptions = () => {
 }
 
 export const getTrains = (body) => {
-	console.log(body);
 	return dispatch => {
 		Client.makeRequest('train/find', 'POST', JSON.stringify(body)).then((payload) => {
-			console.log(payload);
 			dispatch({
 				type: 'trains_found',
+				payload: payload
+			});
+		});
+	}
+}
+
+export const getAllTimes = () => {
+	return dispatch => {
+		Client.makeRequest('train/time', 'GET').then((payload) => {
+			dispatch({
+				type: 'all_times',
 				payload: payload
 			});
 		});

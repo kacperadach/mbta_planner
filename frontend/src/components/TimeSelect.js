@@ -1,11 +1,14 @@
 import React, { PropTypes } from 'react';
+import ReactTimeSelect from 'react-time-select';
 import { connect } from 'react-redux';
 import { setFormValue } from '../actions/formActions';
 import Select from 'react-select';
 import { getTimeOptions } from '../utils/time';
 
 const mapStateToProps = (state, props) => {
+	console.log(state);
 	return {
+		timeOptions: state.MainContainerReducer.get('times')
 	};
 };
 
@@ -71,7 +74,7 @@ const TimeSelect = React.createClass({
 		const {
 			label, 
 			initial,
-			options
+			timeOptions
 		} = this.props;
 
 		const {
@@ -82,7 +85,7 @@ const TimeSelect = React.createClass({
 		return (
 			<div>
 				<label>{label}</label>
-				<Select value={value} options={getTimeOptions(value)} onChange={this.handleChange}/>
+				<Select value={value} options={timeOptions} onChange={this.handleChange}/>
 			</div>
 		);
 	}
