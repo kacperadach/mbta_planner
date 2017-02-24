@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TrainDisplay from '../components/TrainDisplay';
+import { Panel } from 'react-bootstrap';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -25,7 +26,7 @@ const TrainResults = React.createClass({
 		if (Trains.size == 0) {
 			return (
 				<div>
-					<p>No Trains Found</p>
+					<Panel header={<h3>No Trains Found</h3>} bsStyle="danger">You're shit out of luck</Panel>
 				</div>
 			);
 		}

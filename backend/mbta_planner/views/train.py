@@ -6,7 +6,7 @@ from IPython.core.debugger import Tracer
 import flask
 from flask import request, abort, jsonify
 
-from mbta_planner.models import TrainStop
+from mbta_planner.models import TrainStop, TrainSearch, User
 from mbta_planner import constants as const
 from mbta_planner.db import session
 from mbta_planner.get_train import get_trains, get_train_stations
@@ -37,6 +37,19 @@ def login():
     train_responses = get_trains(start=start, dest=dest, input_time=t, day=day)
     train_responses = map(lambda x: x.get_dict(), train_responses)
     
+
+    def update_searches(start, dest, day, body):
+        if 'user_id' in body.keys():
+            user_id = body['user_id'];
+            ts = TrainSearch(start=start, destination=dest, timing=day)
+
+            session.add()
+            session.commit()
+            Tracer()()
+
+    if len(train_responses) > 0:
+        update_searches(start, dest, day, body)
+
     return jsonify(train_responses)
 
 
@@ -56,5 +69,8 @@ def get_times():
     for i in range(0, 24):
         for j in range(0, 60):
             all_times.append(time(hour=i, minute=j).strftime('%I:%M %p'))
+
+    all_times = map(lambda x: x[1:] if x[0] == '0' else x, all_times)
     all_times = [{'value': x, 'label': x} for x in all_times]
     return jsonify(all_times)
+

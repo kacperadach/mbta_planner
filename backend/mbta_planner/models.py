@@ -33,6 +33,24 @@ class TrainResponse():
 		}
 
 
+class TrainSearch(Base):
+	__tablename__ = 'TrainSearch'
+
+	id = Column(Integer, primary_key=True)
+	start = Column(String(50))
+	destination = Column(String(50))
+	timing = Column(String(50))
+	user_id = Column(Integer, ForeignKey('User.id'))
+	datetime = Column(DateTime, default=datetime.datetime.utcnow)
+
+class User(Base):
+	__tablename__ = 'User'
+
+	id = Column(Integer, primary_key=True)
+	ls_id = Column(String(50))
+	searches = relationship('TrainSearch', order_by="desc(TrainSearch.time)")
+
+
 class Train(Base):
 	__tablename__ = 'Train'
 

@@ -112,7 +112,6 @@ def map_train_table(train_table, line, timing):
 	session.commit()
 
 
-
 def map_pickles():
 	pickle_dir = get_pickles_directory_path()
 	all_files = listdir(pickle_dir)

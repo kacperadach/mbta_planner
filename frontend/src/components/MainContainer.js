@@ -4,47 +4,52 @@ import { connect } from 'react-redux';
 import MainForm from '../components/MainForm';
 import TrainResults from '../components/TrainResults';
 import { getNextTime } from '../actions/formActions';
+import { updateUserId } from '../actions/userActions';
 
 const mapStateToProps = (state, props) => {
-		return {
-		};
+  return {
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-		return {
-				getStations: () => dispatch(getStationOptions()),
-				currentTimeTimeout: () => dispatch(getNextTime()),
-				getTimes: () => dispatch(getAllTimes())
-		};
+  return {
+    getStations: () => dispatch(getStationOptions()),
+    currentTimeTimeout: () => dispatch(getNextTime()),
+    getTimes: () => dispatch(getAllTimes()),
+    updateUserId: () => dispatch(updateUserId())
+  };
 };
 
 const MainComponent = React.createClass({
 
-		componentWillMount() {
-				const {
-						getStations,
-						currentTimeTimeout,
-						getTimes
-				} = this.props;
+  componentWillMount() {
+    const {
+        getStations,
+        currentTimeTimeout,
+        getTimes,
+        updateUserId
+    } = this.props;
 
-				//init app calls
-				getStations();
-				currentTimeTimeout();
-				getTimes();
-		},
+    //init app calls
+    getStations();
+    currentTimeTimeout();
+    getTimes();
 
-		render() {
-				return (
-					<div>
-						<MainForm />
-						<TrainResults />
-					</div>
-				);
-		}
+    updateUserId();
+  },
+
+  render() {
+    return (
+      <div>
+        <MainForm />
+        <TrainResults />
+      </div>
+    );
+  }
 });
 
 MainComponent.propType = {
-		getStations: PropTypes.func,
+    getStations: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainComponent);
