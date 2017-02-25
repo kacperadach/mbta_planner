@@ -45,7 +45,7 @@ def get_searches():
 			abort(400, '{} not found in request body'.format(key))
 
 	id = body['id']
-	searches = session.query(TrainSearch).outerjoin(User, User.ls_id == id).all()[0:3]
+	searches = session.query(TrainSearch).outerjoin(User, User.ls_id == id).order_by(TrainSearch.datetime.desc()).all()[0:3]
 	searches = map(lambda x: x.get_dict(), searches)
 
 	return jsonify(searches)

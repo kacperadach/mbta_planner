@@ -3,6 +3,7 @@ import { getStationOptions, getAllTimes } from '../actions/trainActions';
 import { connect } from 'react-redux';
 import MainForm from '../components/MainForm';
 import TrainResults from '../components/TrainResults';
+import UserSearches from '../components/UserSearches';
 import { getNextTime } from '../actions/formActions';
 import { updateUserId } from '../actions/userActions';
 
@@ -43,6 +44,7 @@ const MainComponent = React.createClass({
       <div>
         <MainForm />
         <TrainResults />
+        <UserSearches />
       </div>
     );
   }

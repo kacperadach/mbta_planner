@@ -43,7 +43,6 @@ class TrainSearch(Base):
 	timing = Column(String(50))
 	user_id = Column(Integer, ForeignKey('User.id'))
 	datetime = Column(DateTime, default=datetime.utcnow)
-
 	hide = Column(Boolean, default=False)
 
 	def get_dict(self):
@@ -59,7 +58,7 @@ class User(Base):
 
 	id = Column(Integer, primary_key=True)
 	ls_id = Column(String(50))
-	searches = relationship('TrainSearch', order_by="desc(TrainSearch.datetime)")
+	searches = relationship('TrainSearch', order_by="asc(TrainSearch.datetime)")
 
 
 class Train(Base):

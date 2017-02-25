@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import TrainDisplay from '../components/TrainDisplay';
+import SearchDisplay from '../components/SearchDisplay';
 import { Panel } from 'react-bootstrap';
 
 const mapStateToProps = (state, props) => {
   return {
+  	'searches': state.UserReducer.get('searches')
   };
 };
 
@@ -16,12 +17,20 @@ const UserSearches = React.createClass({
 
 	render() {
 		const {
-			Searched
+			searches
 		} = this.props;
+
+		if (searches.length == 0) {
+			return null;
+		}
 
 		return (
 			<div>
-				{Searched ? this.displayTrains() : null}
+				{searches.map((s, key) => {
+					return (
+						<SearchDisplay key={key} search={s} />
+					);
+				})}
 			</div>
 		);
 	}
@@ -29,7 +38,7 @@ const UserSearches = React.createClass({
 
 });
 
-TrainResults.propTypes = {
+UserSearches.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSearches);
