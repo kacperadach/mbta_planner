@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getTrains } from '../actions/trainActions';
+import { Button } from 'react-bootstrap';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -31,7 +32,7 @@ const SubmitButton = React.createClass({
 		} = this.props;
 
 		return (
-			<button onClick={() => submit({start, destination, day, time, user_id})}>Find Trains</button>
+			<Button onClick={() => submit({start, destination, day, time, user_id})}>Find Trains</Button>
 		);
 	}
 

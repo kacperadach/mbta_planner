@@ -39,14 +39,16 @@ const MainForm = React.createClass({
             <SubSelect label="Destination" options={stations} />
           </Col>
         </Row>
-        <div className="searches-flex">
-          <div className="time-date-inputs">
+        <Row className="station-inputs">
+          <Col md={6}>
             <TimeSelect label="Time" initial={currentTime} />
+          </Col>
+          <Col md={6}>
             <SubSelect label="Day" initial="Today" options={Days} />
-          </div>
-          <div className="user-seaches-div">
-            <UserSearches />
-          </div>
+          </Col>
+        </Row>
+        <div className="user-seaches-div">
+          <UserSearches />
         </div>
         <SubmitButton />
       </div>

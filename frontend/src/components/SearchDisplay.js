@@ -22,20 +22,41 @@ const SearchDisplay = React.createClass({
 		return (
 			<div className="search-display">
 				<Button bsSize="large">
-					<Row>
-						<Col xs={6} xsOffset={6}>
-							<Button className="delete-search-button" bsSize="small"><Glyphicon glyph="glyphicon glyphicon-trash"/></Button>
-						</Col>
-					</Row>
-					<small>{search['start']}</small>
-					<p>{search['dest']}</p>
-					<p>{search['timing']}</p>
+					<div className="button-content">
+						<Row>
+							<Col md={2} mdPush={9}>
+								<Button className="delete-search-button" bsSize="small"><Glyphicon glyph="glyphicon glyphicon-trash"/></Button>
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={4} md={4}>
+								<p>Start: </p>
+							</Col>
+							<Col xs={4} md={4}>
+								<p>{search['start']}</p>
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={4} md={4}>
+								<p>Destination: </p>
+							</Col>
+							<Col xs={4} md={4}>
+								<p>{search['dest']}</p>
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={4} md={4}>
+								<p>Day: </p>
+							</Col>
+							<Col xs={4} md={4}>
+								<p>{search['timing']}</p>
+							</Col>
+						</Row>
+					</div>
 				</Button>
 			</div>
 		);
 	}
-
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchDisplay);
