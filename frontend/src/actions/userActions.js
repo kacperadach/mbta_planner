@@ -6,20 +6,32 @@ export const updateUserId = () => {
 		const ls = window.localStorage;
 		const id = ls['id'];
 		if (id) {
-			console.log('id found');
-			return {
+      dispatch(getUserSearches(id));
+			dispatch({
 				type: 'user_id',
 				payload: id
-			}
+			});
 		} else {
 			const newId = getUserId();
 			Client.makeRequest('user/register', 'POST', JSON.stringify({id: newId})).then(() => {
 				ls['id'] = newId;
-				return {
+				dispatch(getUserSearches(newId));
+				dispatch({
 					type: 'user_id',
 					payload: newId
-				}
+				});
 			});
 		}
 	}
 }
+
+export const getUserSearches = (user_id) => {
+	return dispatch => {
+    Client.makeRequest('user/searches', 'POST', JSON.stringify({id: user_id})).then((payload) => {
+      dispatch({
+        type: 'searches',
+        payload
+      });
+    });
+  }
+};

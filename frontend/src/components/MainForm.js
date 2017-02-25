@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SubSelect from '../components/SubSelect';
 import TimeSelect from '../components/TimeSelect';
@@ -42,8 +42,8 @@ const MainForm = React.createClass({
 });
 
 MainForm.propTypes = {
-  value: PropTypes.number,
-  increment: PropTypes.func
+  stations: PropTypes.array,
+  currentTime: PropTypes.string
 };
 
 

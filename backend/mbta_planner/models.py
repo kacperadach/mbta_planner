@@ -1,4 +1,5 @@
 import enum
+from datetime import datetime
 
 from flask.json import jsonify
 from sqlalchemy import *
@@ -41,14 +42,24 @@ class TrainSearch(Base):
 	destination = Column(String(50))
 	timing = Column(String(50))
 	user_id = Column(Integer, ForeignKey('User.id'))
-	datetime = Column(DateTime, default=datetime.datetime.utcnow)
+	datetime = Column(DateTime, default=datetime.utcnow)
+
+	hide = Column(Boolean, default=False)
+
+	def get_dict(self):
+
+		return {
+			'start': self.start,
+			'dest': self.destination,
+			'timing': self.timing
+		}
 
 class User(Base):
 	__tablename__ = 'User'
 
 	id = Column(Integer, primary_key=True)
 	ls_id = Column(String(50))
-	searches = relationship('TrainSearch', order_by="desc(TrainSearch.time)")
+	searches = relationship('TrainSearch', order_by="desc(TrainSearch.datetime)")
 
 
 class Train(Base):

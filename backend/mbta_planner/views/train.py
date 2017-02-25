@@ -41,11 +41,12 @@ def login():
     def update_searches(start, dest, day, body):
         if 'user_id' in body.keys():
             user_id = body['user_id'];
-            ts = TrainSearch(start=start, destination=dest, timing=day)
-
-            session.add()
-            session.commit()
-            Tracer()()
+            user = session.query(User).filter_by(ls_id=user_id).first()
+            if user:
+                ts = TrainSearch(start=start, destination=dest, timing=day, user_id=user.id)
+                user.searches.append(ts)
+                session.add_all((ts, user))
+                session.commit()
 
     if len(train_responses) > 0:
         update_searches(start, dest, day, body)

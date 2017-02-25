@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import { getCurrentTime } from '../utils/time';
 
-export default(state = Map({'stations': [], 'currentTime': getCurrentTime(), 'times': []}), { type, payload }) => {
+export default(state = Map({stations: [], currentTime: getCurrentTime(), times: []}), { type, payload }) => {
   switch(type) {
     case 'station_options':
       return state.set('stations', payload);
