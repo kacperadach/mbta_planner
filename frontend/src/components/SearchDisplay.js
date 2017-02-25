@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Panel } from 'react-bootstrap';
+import { Panel, Button, Glyphicon, Col, Row } from 'react-bootstrap';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -18,15 +18,19 @@ const SearchDisplay = React.createClass({
 		const {
 			search
 		} = this.props;
-		console.log(search);
 
 		return (
-			<div>
-				<Panel header={<h3>Search</h3>} bsStyle="primary">
-					<p>{search['start']}</p>
+			<div className="search-display">
+				<Button bsSize="large">
+					<Row>
+						<Col xs={6} xsOffset={6}>
+							<Button className="delete-search-button" bsSize="small"><Glyphicon glyph="glyphicon glyphicon-trash"/></Button>
+						</Col>
+					</Row>
+					<small>{search['start']}</small>
 					<p>{search['dest']}</p>
 					<p>{search['timing']}</p>
-				</Panel>
+				</Button>
 			</div>
 		);
 	}

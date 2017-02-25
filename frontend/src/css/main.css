@@ -1,0 +1,40 @@
+.main-container {
+	max-width: 1500px;
+	margin-right: 25%;
+    margin-left: 25%;
+}
+
+.main-form {
+	max-width: 800px;
+}
+
+.time-date-inputs {
+	width: 28%;
+}
+
+.user-seaches-div {
+	margin: 10px;
+	width: 72%;
+}
+
+.searches-flex {
+	display: flex;
+}
+
+.search-display {
+	flex-direction: row;
+	border: none;
+	margin: 10px;
+	width: 24%;
+}
+
+.search-display-flex {
+	display: flex;
+}
+
+.subselect-form {
+	margin: 10px;
+}
+
+.delete-search-button {
+}

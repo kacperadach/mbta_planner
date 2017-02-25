@@ -1,5 +1,7 @@
+import { getToday } from '../utils/time';
+
 export const Days = [
-	{value: 'Today', label: 'Today'},
+	{value: 'Today', label: `Today (${getToday()})`},
 	{value: 'Monday', label: 'Monday'},
 	{value: 'Tuesday', label: 'Tuesday'},
 	{value: 'Wednesday', label: 'Wednesday'},

@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import { getStationOptions, getAllTimes } from '../actions/trainActions';
+import '../css/main.css';
 import { connect } from 'react-redux';
 import MainForm from '../components/MainForm';
 import TrainResults from '../components/TrainResults';
 import UserSearches from '../components/UserSearches';
 import { getNextTime } from '../actions/formActions';
 import { updateUserId } from '../actions/userActions';
+import { Col, Row, PageHeader } from 'react-bootstrap';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -41,10 +43,10 @@ const MainComponent = React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="main-container">
+        <PageHeader>Mass Commuter Rail Train Checker</PageHeader>
         <MainForm />
         <TrainResults />
-        <UserSearches />
       </div>
     );
   }

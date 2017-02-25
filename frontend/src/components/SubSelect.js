@@ -66,7 +66,7 @@ const SubSelect = React.createClass({
 		} = this.state;
 
 		return (
-			<div>
+			<div className="subselect-form">
 				<label>{label}</label>
 				<Select value={value} options={options} onChange={this.handleChange}/>
 			</div>

@@ -4,6 +4,8 @@ import SubSelect from '../components/SubSelect';
 import TimeSelect from '../components/TimeSelect';
 import { Days } from '../constants/days';
 import SubmitButton from '../components/SubmitButton';
+import { Col, Row } from 'react-bootstrap';
+import UserSearches from '../components/UserSearches';
 
 
 const mapStateToProps = (state, props) => {
@@ -27,14 +29,25 @@ const MainForm = React.createClass({
       currentTime
     } = this.props;
 
-    console.log(currentTime);
-
     return (
-      <div>
-        <SubSelect label="Start" options={stations} />
-        <SubSelect label="Destination" options={stations} />
-        <TimeSelect label="Time" initial={currentTime} />
-        <SubSelect label="Day" initial="Today" options={Days} />
+      <div className="main-form">
+        <Row className="station-inputs">
+          <Col md={6}>
+            <SubSelect label="Start" options={stations} />
+          </Col>
+          <Col md={6}>
+            <SubSelect label="Destination" options={stations} />
+          </Col>
+        </Row>
+        <div className="searches-flex">
+          <div className="time-date-inputs">
+            <TimeSelect label="Time" initial={currentTime} />
+            <SubSelect label="Day" initial="Today" options={Days} />
+          </div>
+          <div className="user-seaches-div">
+            <UserSearches />
+          </div>
+        </div>
         <SubmitButton />
       </div>
     );

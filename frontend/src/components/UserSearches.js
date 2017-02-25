@@ -25,7 +25,7 @@ const UserSearches = React.createClass({
 		}
 
 		return (
-			<div>
+			<div className="search-display-flex">
 				{searches.map((s, key) => {
 					return (
 						<SearchDisplay key={key} search={s} />

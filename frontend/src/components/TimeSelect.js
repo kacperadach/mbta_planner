@@ -82,7 +82,7 @@ const TimeSelect = React.createClass({
 		} = this.state;
 
 		return (
-			<div>
+			<div className="subselect-form">
 				<label>{label}</label>
 				<Select value={value} options={timeOptions} onChange={this.handleChange}/>
 			</div>
