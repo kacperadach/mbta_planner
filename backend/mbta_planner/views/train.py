@@ -54,13 +54,12 @@ def login():
                         6: 'Sunday'
                     }
                     day = days[datetime.today().weekday()]
-
                 ts = TrainSearch(start=start, destination=dest, timing=day, user_id=user.id)
                 user.searches.append(ts)
                 session.add_all((ts, user))
                 session.commit()
 
-    if len(train_responses) > 0:
+    if len(train_responses) > 0 and 'again' not in body.keys():
         update_searches(start, dest, day, body)
 
     return jsonify(train_responses)

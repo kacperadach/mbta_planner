@@ -1,7 +1,9 @@
 import Client from '../api/client';
+import { resetSearched } from '../actions/searchActions';
 
 export const getStationOptions = () => {
 	return dispatch => {
+		dispatch(resetSearched());
 		Client.makeRequest('train/stations', 'GET').then((payload) => {
 			dispatch({
 				type: 'station_options',
@@ -37,3 +39,4 @@ export const getAllTimes = () => {
 		});
 	}
 }
+

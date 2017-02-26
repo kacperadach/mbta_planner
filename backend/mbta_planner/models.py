@@ -49,8 +49,8 @@ class TrainSearch(Base):
 
 		return {
 			'start': self.start,
-			'dest': self.destination,
-			'timing': self.timing
+			'destination': self.destination,
+			'day': self.timing
 		}
 
 class User(Base):

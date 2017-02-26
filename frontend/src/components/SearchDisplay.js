@@ -1,27 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Panel, Button, Glyphicon, Col, Row } from 'react-bootstrap';
+import { getTrains } from '../actions/trainActions';
 
 const mapStateToProps = (state, props) => {
   return {
+  	time: state.MainFormReducer.get('Time'),
+  	user_id: state.UserReducer.get('userId')
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+  	searchAgain: (body) => dispatch(getTrains(body))
   };
+
+  	// 
+  
 };
 
 const SearchDisplay = React.createClass({
 
 	render() {
 		const {
-			search
+			search,
+			searchAgain,
+			time,
+			user_id
 		} = this.props;
+
+		const {
+			start,
+			destination,
+			day
+		} = search;
+
+		const again = {again: true};
 
 		return (
 			<div className="search-display">
-				<Button bsSize="large">
+				<Button bsSize="large" onClick={() => searchAgain({start, destination, day, time, user_id, again})}>
 					<div className="button-content">
 						<Row>
 							<Col md={2} mdPush={9}>
@@ -41,7 +59,7 @@ const SearchDisplay = React.createClass({
 								<p>Destination: </p>
 							</Col>
 							<Col xs={4} md={4}>
-								<p>{search['dest']}</p>
+								<p>{search['destination']}</p>
 							</Col>
 						</Row>
 						<Row>
@@ -49,7 +67,7 @@ const SearchDisplay = React.createClass({
 								<p>Day: </p>
 							</Col>
 							<Col xs={4} md={4}>
-								<p>{search['timing']}</p>
+								<p>{search['day']}</p>
 							</Col>
 						</Row>
 					</div>
