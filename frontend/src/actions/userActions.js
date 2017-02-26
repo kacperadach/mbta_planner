@@ -35,7 +35,3 @@ export const getUserSearches = (user_id) => {
 	    });
   	}
 };
-
-export const deleteSearch = (search_id) => {
-	
-}

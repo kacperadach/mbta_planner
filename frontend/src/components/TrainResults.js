@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TrainDisplay from '../components/TrainDisplay';
-import { Panel, Collapse } from 'react-bootstrap';
+import { Panel, Collapse, Fade } from 'react-bootstrap';
 import { getToday } from '../utils/time';
 
 const mapStateToProps = (state, props) => {
@@ -70,11 +70,13 @@ const TrainResults = React.createClass({
 			Searched
 		} = this.props;
 
+    console.log(Searched);
+
 		return (
 			<div>
-				<Collapse in={Searched}>
+				<Fade in={Searched}>
 					{this.displayTrains()}
-				</Collapse>
+				</Fade>
 			</div>
 		);
 	}

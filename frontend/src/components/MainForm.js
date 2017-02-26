@@ -4,14 +4,15 @@ import SubSelect from '../components/SubSelect';
 import TimeSelect from '../components/TimeSelect';
 import { Days } from '../constants/days';
 import SubmitButton from '../components/SubmitButton';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Collapse } from 'react-bootstrap';
 import UserSearches from '../components/UserSearches';
 
 
 const mapStateToProps = (state, props) => {
   return {
     'stations': state.MainContainerReducer.get('stations'),
-    'currentTime': state.MainContainerReducer.get('currentTime')
+    'currentTime': state.MainContainerReducer.get('currentTime'),
+    'searches': state.UserReducer.get('searches')
   };
 };
 
@@ -22,12 +23,31 @@ const mapDispatchToProps = (dispatch) => {
 
 const MainForm = React.createClass({
 
+  getInitialState() {
+    return {
+      showSearches: false
+    };
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.searches.length > 0) {
+      this.setState({showSearches: true});
+    } else {
+      this.setState({showSearches: false});
+    }
+  },
+
   render() {
 
     const {
       stations,
-      currentTime
+      currentTime,
+      searches
     } = this.props;
+
+    const {
+      showSearches
+    } = this.state;
 
     return (
       <div className="main-form">
@@ -48,7 +68,9 @@ const MainForm = React.createClass({
           </Col>
         </Row>
         <div className="user-seaches-div">
-          <UserSearches />
+          <Collapse transitionAppear={true} in={showSearches}>
+            <UserSearches />
+          </Collapse>
         </div>
         <SubmitButton />
       </div>

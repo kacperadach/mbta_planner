@@ -5,8 +5,9 @@ export default(state = Map({'userId': '', 'searches': []}), { type, payload }) =
     case 'user_id':
       return state.set('userId', payload);
     case 'searches':
-    	console.log(payload);
       return state.set('searches', payload);
+    case 'search_deleted':
+    	return state.set('searches', payload);
     default:
       return state;
   }

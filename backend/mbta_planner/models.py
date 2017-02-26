@@ -50,8 +50,12 @@ class TrainSearch(Base):
 		return {
 			'start': self.start,
 			'destination': self.destination,
-			'day': self.timing
+			'day': self.timing,
+			'id': self.id
 		}
+
+	def is_equal(self, ts):
+		return self.start == ts.start and self.destination == ts.destination and self.timing == ts.timing
 
 class User(Base):
 	__tablename__ = 'User'

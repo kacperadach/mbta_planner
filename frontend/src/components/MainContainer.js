@@ -7,7 +7,7 @@ import TrainResults from '../components/TrainResults';
 import UserSearches from '../components/UserSearches';
 import { getNextTime } from '../actions/formActions';
 import { updateUserId } from '../actions/userActions';
-import { Col, Row, PageHeader } from 'react-bootstrap';
+import { Col, Row, PageHeader, Label } from 'react-bootstrap';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -44,7 +44,9 @@ const MainComponent = React.createClass({
   render() {
     return (
       <div className="main-container">
-        <PageHeader>Mass Commuter Rail Train Checker</PageHeader>
+        <PageHeader>
+          <h1>Mass Commuter Rail Train Checker</h1>
+        </PageHeader>
         <MainForm />
         <TrainResults />
       </div>

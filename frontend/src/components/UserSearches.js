@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SearchDisplay from '../components/SearchDisplay';
-import { Panel } from 'react-bootstrap';
+import { Panel, PanelGroup } from 'react-bootstrap';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -24,13 +24,30 @@ const UserSearches = React.createClass({
 			return null;
 		}
 
+		// return (
+		// 	<div>
+		// 		<PanelGroup defaultActiveKey="1">
+		// 			<Panel header={<strong>Recent Searches</strong>} eventKey="1">
+		// 				<div className="search-display-flex">
+		// 					{searches.map((s, key) => {
+		// 						return (
+		// 							<SearchDisplay key={key} search={s} />
+		// 						);
+		// 					})}
+		// 				</div>
+		// 			</Panel>
+		// 		</PanelGroup>
+		// 	</div>
+		// );
 		return (
-			<div className="search-display-flex">
-				{searches.map((s, key) => {
-					return (
-						<SearchDisplay key={key} search={s} />
-					);
-				})}
+			<div>
+				<div className="search-display-flex">
+					{searches.map((s, key) => {
+						return (
+							<SearchDisplay key={key} search={s} />
+						);
+					})}
+				</div>
 			</div>
 		);
 	}

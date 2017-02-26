@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getTrains } from '../actions/trainActions';
 import { Button } from 'react-bootstrap';
-import { getUserSearches } from '../actions/userActions'
+import { getUserSearches } from '../actions/userActions';
+import { resetSearched } from '../actions/searchActions';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -16,7 +17,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	submit: (body, user_id) => {dispatch(getTrains(body)); dispatch(getUserSearches(user_id))}
+  	submit: (body, user_id) => {dispatch(getTrains(body)); dispatch(getUserSearches(user_id))},
+    clear: () => dispatch(resetSearched())
   };
 };
 
@@ -29,11 +31,15 @@ const SubmitButton = React.createClass({
 			destination,
 			day, 
 			time,
-			user_id
+			user_id,
+      clear
 		} = this.props;
 
 		return (
-			<Button bsStyle="primary" onClick={() => submit({start, destination, day, time, user_id}, user_id)}>Find Trains</Button>
+			<div className="submit-button-div">
+				<Button className="submit-button" bsStyle="primary" onClick={() => submit({start, destination, day, time, user_id}, user_id)}>Find Trains</Button>
+        <Button className="clear-button" bsStyle="warning" onClick={clear}>Clear</Button>
+			</div>
 		);
 	}
 
