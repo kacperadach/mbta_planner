@@ -33,7 +33,7 @@ const SubmitButton = React.createClass({
 		} = this.props;
 
 		return (
-			<Button onClick={() => submit({start, destination, day, time, user_id}, user_id)}>Find Trains</Button>
+			<Button bsStyle="primary" onClick={() => submit({start, destination, day, time, user_id}, user_id)}>Find Trains</Button>
 		);
 	}
 

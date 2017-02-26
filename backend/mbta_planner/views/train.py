@@ -43,6 +43,18 @@ def login():
             user_id = body['user_id'];
             user = session.query(User).filter_by(ls_id=user_id).first()
             if user:
+                if day.lower() == 'today':
+                    days = {
+                        0: 'Monday',
+                        1: 'Tuesday',
+                        2: 'Wednesday',
+                        3: 'Thursday',
+                        4: 'Friday',
+                        5: 'Saturday',
+                        6: 'Sunday'
+                    }
+                    day = days[datetime.today().weekday()]
+
                 ts = TrainSearch(start=start, destination=dest, timing=day, user_id=user.id)
                 user.searches.append(ts)
                 session.add_all((ts, user))
