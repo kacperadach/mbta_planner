@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getTrains } from '../actions/trainActions';
 import { Button } from 'react-bootstrap';
+import { getUserSearches } from '../actions/userActions'
 
 const mapStateToProps = (state, props) => {
   return {
@@ -15,7 +16,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	submit: (body) => dispatch(getTrains(body))
+  	submit: (body, user_id) => {dispatch(getTrains(body)); dispatch(getUserSearches(user_id))}
   };
 };
 
@@ -32,7 +33,7 @@ const SubmitButton = React.createClass({
 		} = this.props;
 
 		return (
-			<Button onClick={() => submit({start, destination, day, time, user_id})}>Find Trains</Button>
+			<Button onClick={() => submit({start, destination, day, time, user_id}, user_id)}>Find Trains</Button>
 		);
 	}
 

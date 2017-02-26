@@ -37,12 +37,23 @@ const TrainResults = React.createClass({
 			day
 		} = this.props;
 
+		console.log(start + destination);
+
 		if (Trains.size === 0) {
-			return (
-				<div>
-					<Panel header={<h3>{`No Trains Found from ${start} to ${destination} ${getDay(day)}`}</h3>} bsStyle="danger" />
-				</div>
-			);
+			if (start !== '' && destination !== '') {
+				return (
+					<div>
+						<Panel header={<h3>{`No Trains Found from ${start} to ${destination} ${getDay(day)}`}</h3>} bsStyle="danger" />
+					</div>
+				);
+			} else {
+				return (
+					<div>
+						<Panel header={<h3>No Trains Stations Selected</h3>} bsStyle="danger" />
+					</div>
+				);
+			}
+			
 		}
 
 		return (

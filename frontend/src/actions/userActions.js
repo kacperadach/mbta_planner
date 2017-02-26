@@ -27,11 +27,15 @@ export const updateUserId = () => {
 
 export const getUserSearches = (user_id) => {
 	return dispatch => {
-    Client.makeRequest('user/searches', 'POST', JSON.stringify({id: user_id})).then((payload) => {
-      dispatch({
-        type: 'searches',
-        payload
-      });
-    });
-  }
+	    Client.makeRequest('user/searches', 'POST', JSON.stringify({id: user_id})).then((payload) => {
+	      dispatch({
+	        type: 'searches',
+	        payload
+	      });
+	    });
+  	}
 };
+
+export const deleteSearch = (search_id) => {
+	
+}

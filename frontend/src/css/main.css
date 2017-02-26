@@ -2,6 +2,7 @@
 	max-width: 1500px;
 	margin-right: 25%;
     margin-left: 25%;
+    min-width: 700px;
 }
 
 .main-form {

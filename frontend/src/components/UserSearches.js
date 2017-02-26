@@ -20,7 +20,7 @@ const UserSearches = React.createClass({
 			searches
 		} = this.props;
 
-		if (searches.length == 0) {
+		if (searches.length === 0) {
 			return null;
 		}
 
