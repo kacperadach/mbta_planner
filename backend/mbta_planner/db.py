@@ -4,7 +4,8 @@ from sqlalchemy.orm import sessionmaker
 from mbta_planner.base import Base
 from mbta_planner.constants import *
 
-SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}/{}'.format(MYSQL_USER, MYSQL_PASSWD, MYSQL_HOST, MYSQL_DB)
+#SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}/{}'.format(MYSQL_USER, MYSQL_PASSWD, MYSQL_HOST, MYSQL_DB)
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}/{}'.format(MYSQL_USER, MYSQL_PASSWD, MYSQL_HOST, MYSQL_DB)
 
 from mbta_planner.models import *
 
