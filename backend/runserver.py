@@ -4,4 +4,5 @@ from mbta_planner import app
 application = app
 
 if __name__ == '__main__':
-    app.run(port=3001)
+	application.debug = True
+    application.run(port=3001)
