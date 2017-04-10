@@ -1,6 +1,6 @@
-MYSQL_HOST = 'mbtaplanner.ccbizm1po9w4.us-west-2.rds.amazonaws.com:3306'#'localhost'
-MYSQL_USER = 'Kacper420' #kacper
-MYSQL_PASSWD = 'thickblunt420' #pwd
+MYSQL_HOST = 'localhost'#'mbtaplanner.ccbizm1po9w4.us-west-2.rds.amazonaws.com:3306'#'localhost'
+MYSQL_USER = 'kacper'#'Kacper420' #kacper
+MYSQL_PASSWD = 'pwd'#'thickblunt420' #pwd
 MYSQL_DB = 'mbta_planner'
 
 
