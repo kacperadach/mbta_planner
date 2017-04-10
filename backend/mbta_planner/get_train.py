@@ -81,7 +81,10 @@ def get_trains(start, dest, input_time, day):
 
 
 def get_train_stations():
-	TrainStops = map(lambda x: x[0], session.query(TrainStop.station).all());
-	seen = set()
-	seen_add = seen.add
-	return sorted([x for x in TrainStops if not (x in seen or seen_add(x))])
+	try:
+		TrainStops = map(lambda x: x[0], session.query(TrainStop.station).all());
+		seen = set()
+		seen_add = seen.add
+		return sorted([x for x in TrainStops if not (x in seen or seen_add(x))])
+	except:
+		session.rollback()

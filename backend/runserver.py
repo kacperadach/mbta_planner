@@ -5,4 +5,4 @@ application = app
 
 if __name__ == '__main__':
 	application.debug = True
-    application.run(port=3001)
+	application.run()
